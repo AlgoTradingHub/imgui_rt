@@ -1,0 +1,7 @@
+	context = wrap_c.init(; output_file="cimgui.jl", header_library=x->"cimgui", common_file="cimgui_h.jl", clang_diagnostics=true, clang_includes=["/home/oleksandr/ath/julia/usr/lib/clang/3.7.1/include"])
+# time: 2016-03-28 20:29:30 EEST
+# mode: julia
+	context.options.wrap_structs = true
+# time: 2016-03-28 20:29:38 EEST
+# mode: julia
+	wrap_c.wrap_c_headers(context, ["/home/oleksandr/ath/cimgui/cimgui/cimgui.h"])

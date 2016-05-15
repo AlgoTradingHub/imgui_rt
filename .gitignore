@@ -1,0 +1,6 @@
+.hg/
+.vs/
+Debug/
+*/obj/*
+*.VC.opendb
+*.VC.db

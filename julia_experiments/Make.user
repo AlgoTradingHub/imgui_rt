@@ -1,0 +1,4 @@
+override BUILD_LLVM_CLANG=1
+override USE_LLVM_SHLIB=1
+override LLVM_ASSERTIONS=1
+

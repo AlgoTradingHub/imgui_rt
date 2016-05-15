@@ -1,0 +1,19 @@
+syntax: glob
+__.git/
+*/Debug/
+*/.vs/*
+*/ipch/*
+.sdf
+.VC.opendb
+*.VC.opendb
+*.sdf
+*/x64/Release/*
+*/x64/Debug/*
+*/Release/*
+*.VC.db
+*.VC.db
+*/bin/*
+*/obj/*
+.vs/
+Debug/
+.git/
