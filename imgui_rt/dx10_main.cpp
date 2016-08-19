@@ -145,7 +145,7 @@ API void mainLoop_dx10();
 API void destroyAll_dx10();
 */
 
-HWND hwnd;
+extern HWND hwnd;
 WNDCLASSEX wc;
 
 API bool setupAll_dx10() {
@@ -197,7 +197,7 @@ API void mainLoop_dx10() {
 	// Main loop
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
-	while (msg.message != WM_QUIT)
+	while (msg.message != WM_QUIT && msg.message != WM_CLOSE)
 	{
 		if (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
 		{

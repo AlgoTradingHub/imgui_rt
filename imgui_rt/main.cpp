@@ -387,6 +387,17 @@ API void destroyAll() {
 	UnregisterClassW(m_window_class_name, m_winClass.hInstance);
 }
 
+API void setTitle(char* text) {
+	if (m_hwnd) {
+		SetWindowTextA(m_hwnd, text);
+	}
+	if (hwnd) {
+		SetWindowTextA(hwnd, text);
+	}
+}
+
+extern HWND hwnd = 0;
+
 extern void(*renderCallback)(void) = 0;
 
 // usage
