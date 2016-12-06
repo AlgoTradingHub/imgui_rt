@@ -19,6 +19,7 @@
 #define PosFloatToFixed(X)      FloatToFixed(X)
 #define SignedFloatToFixed(X)   FloatToFixed(X)
 
+#pragma warning(disable:4244)
 
 void raster_tri_rgb_swap_rb(CRasterRGBTriangle2DInfo& info)
 {

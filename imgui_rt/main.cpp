@@ -114,10 +114,10 @@ void renderDrawLists(ImDrawData* draw_data)
 					info.tex_width = rgba_texture->width;
 					info.tex_height = rgba_texture->height;
 
-					info.clip_left = pcmd->ClipRect.x;
-					info.clip_right = info.clip_left + (pcmd->ClipRect.z - pcmd->ClipRect.x);
-					info.clip_top = (m_screen_surface_height - pcmd->ClipRect.w);
-					info.clip_bottom = info.clip_top + (pcmd->ClipRect.w - pcmd->ClipRect.y);
+					info.clip_left = (int)pcmd->ClipRect.x;
+					info.clip_right = (int)(info.clip_left + (pcmd->ClipRect.z - pcmd->ClipRect.x));
+					info.clip_top = (int)(m_screen_surface_height - pcmd->ClipRect.w);
+					info.clip_bottom = (int)(info.clip_top + (pcmd->ClipRect.w - pcmd->ClipRect.y));
 
 					raster_tri_rgb_swap_rb(info);
 				}
@@ -160,7 +160,7 @@ LRESULT __stdcall WindowProc(HWND   hWnd, UINT   msg, WPARAM wParam, LPARAM lPar
 	case 0x020A: //WM_MOUSEWHEEL
 	{
 		short idelta = (short)HIWORD(wParam);
-		float delta = idelta / 120.0;
+		float delta = idelta / 120.0f;
 		io.MouseWheel = delta;
 		break;
 
@@ -189,9 +189,9 @@ LRESULT __stdcall WindowProc(HWND   hWnd, UINT   msg, WPARAM wParam, LPARAM lPar
 	case WM_KEYDOWN:
 	{
 		io.KeysDown[wParam] = true;
-		io.KeyCtrl = (GetKeyState(VK_LCONTROL) & 0x8000) | (GetKeyState(VK_RCONTROL) & 0x8000);
-		io.KeyShift = (GetKeyState(VK_LSHIFT) & 0x8000) | (GetKeyState(VK_RSHIFT) & 0x8000);
-		io.KeyAlt = (GetKeyState(VK_LMENU) & 0x8000) | (GetKeyState(VK_RMENU) & 0x8000);
+		io.KeyCtrl = 0 != ((GetKeyState(VK_LCONTROL) & 0x8000) | (GetKeyState(VK_RCONTROL) & 0x8000));
+		io.KeyShift = 0 != ((GetKeyState(VK_LSHIFT) & 0x8000) | (GetKeyState(VK_RSHIFT) & 0x8000));
+		io.KeyAlt = 0 != ((GetKeyState(VK_LMENU) & 0x8000) | (GetKeyState(VK_RMENU) & 0x8000));
 
 		break;
 	}
@@ -199,9 +199,9 @@ LRESULT __stdcall WindowProc(HWND   hWnd, UINT   msg, WPARAM wParam, LPARAM lPar
 	case WM_KEYUP:
 	{
 		io.KeysDown[wParam] = false;
-		io.KeyCtrl = (GetKeyState(VK_LCONTROL) & 0x8000) | (GetKeyState(VK_RCONTROL) & 0x8000);
-		io.KeyShift = (GetKeyState(VK_LSHIFT) & 0x8000) | (GetKeyState(VK_RSHIFT) & 0x8000);
-		io.KeyAlt = (GetKeyState(VK_LMENU) & 0x8000) | (GetKeyState(VK_RMENU) & 0x8000);
+		io.KeyCtrl = 0 != ((GetKeyState(VK_LCONTROL) & 0x8000) | (GetKeyState(VK_RCONTROL) & 0x8000));
+		io.KeyShift = 0 != ((GetKeyState(VK_LSHIFT) & 0x8000) | (GetKeyState(VK_RSHIFT) & 0x8000));
+		io.KeyAlt = 0 != ((GetKeyState(VK_LMENU) & 0x8000) | (GetKeyState(VK_RMENU) & 0x8000));
 		break;
 	}
 
@@ -214,8 +214,8 @@ LRESULT __stdcall WindowProc(HWND   hWnd, UINT   msg, WPARAM wParam, LPARAM lPar
 			free(m_screen_surface);
 		m_screen_surface = (unsigned int*)malloc(m_screen_surface_width*m_screen_surface_height * 4);
 
-		io.DisplaySize.x = m_screen_surface_width;
-		io.DisplaySize.y = m_screen_surface_height;
+		io.DisplaySize.x = (float)m_screen_surface_width;
+		io.DisplaySize.y = (float)m_screen_surface_height;
 		if (!m_font_texture)
 		{
 			CRGBATexture* rgba_texture = (CRGBATexture*)malloc(sizeof(CRGBATexture));
@@ -243,7 +243,7 @@ LRESULT __stdcall WindowProc(HWND   hWnd, UINT   msg, WPARAM wParam, LPARAM lPar
 		DWORD current_tick = GetTickCount();
 		if (!last_tick) last_tick = current_tick;
 
-		io.DeltaTime = (float)(current_tick - last_tick) / 1000.0;
+		io.DeltaTime = (float)(current_tick - last_tick) / 1000.0f;
 
 		last_tick = current_tick;
 

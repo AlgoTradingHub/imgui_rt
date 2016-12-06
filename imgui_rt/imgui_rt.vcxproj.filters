@@ -24,15 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\cimgui\cimgui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cimgui\drawList.cpp">
-      <Filter>Source Files\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cimgui\fontAtlas.cpp">
-      <Filter>Source Files\imgui</Filter>
-    </ClCompile>
     <ClCompile Include="..\imgui\imgui.cpp">
       <Filter>Source Files\imgui</Filter>
     </ClCompile>
@@ -54,11 +45,17 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files\sw</Filter>
     </ClCompile>
+    <ClCompile Include="cimgui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="drawList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fontAtlas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\cimgui\cimgui.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\imgui\imgui_internal.h">
       <Filter>Source Files\imgui</Filter>
     </ClInclude>
@@ -77,5 +74,11 @@
     <ClInclude Include="main.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="cimgui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
   </ItemGroup>
 </Project>
